@@ -36,11 +36,17 @@ instance View PlayerView where
         {p}
     |]
 
-player PlayerView { .. } archiveLink songLink = [hsx|
+player PlayerView { .. } archiveLink songLink =
+    let
+        p = case playerState of
+            Just playerState -> audioPlayer playerState
+            Nothing -> empty
+    in [hsx|
     <div class="text-center">
         <h2>{get #name band}</h2>
         <h4>Live at {get #venue performance}</h4>
         <h4>{get #date performance}</h4>
+        {p}
     </div>
     {renderSongs songs archiveLink songLink}
 |]
@@ -109,8 +115,7 @@ audioPlayer PlayerState { .. } =
     in [hsx|
         <div id="audio-container">
             <div id="audio-container-inner" class="d-flex flex-column align-items-center">
-                <strong>{songTitle}</strong>
-                <span class="mb-2">{album}</span>
+                <strong>Now playing: {songTitle}</strong>
                 <audio id="audio" controls/>
             </div>
         </div>
