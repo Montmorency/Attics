@@ -171,6 +171,7 @@ instance DisplayableJob NightlyScrapeJob where
                     </tr>
                 </tbody>
             </table>
+
             <div class="d-flex flex-row">
                 <form class="mr-2" action="/jobs/DeleteJob" method="POST">
                     <input type="hidden" id="tableName" name="tableName" value={table}>
@@ -250,3 +251,4 @@ instance TableViewable (IncludeWrapper "bandId" NightlyScrapeJob) where
                 <button type="submit" class="btn btn-primary btn-sm">+ New Job</button>
             </form>
         |]
+

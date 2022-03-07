@@ -58,14 +58,23 @@ instance Controller AtticsController where
         render ShowRecordingView { .. }
         else renderHome
 
+<<<<<<< HEAD
     action (MigrationAction _) =
         if isJsonRequest then
+=======
+    action (MigrationAction _) = 
+        if isJsonRequest then 
+>>>>>>> upstream/master
             do
                 let idStr :: Text = param "identifiers"
                 let identifiers = Text.splitOn "," (cs idStr)
                 items <- fetchMigrationItems identifiers
                 render MigrationView { .. }
+<<<<<<< HEAD
         else
+=======
+        else 
+>>>>>>> upstream/master
             renderHome
 
     action playerAction@PlayerAction { .. } = do
@@ -109,3 +118,4 @@ instance Controller AtticsController where
             songs=songs,
             playerState=playerState
         }
+
